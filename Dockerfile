@@ -1,6 +1,6 @@
 # NOTE: Multi-stage Build
 
-FROM alpine:3.7 as graalvm_download
+FROM alpine:3.9 as graalvm_download
 
 ENV GRAALVM_VERSION=1.0.0-rc13
 
@@ -25,7 +25,7 @@ RUN cd /piping-server && \
 
 
 # (base image info from: https://masahito.hatenablog.com/entry/2018/06/24/223231)
-FROM jeanblanchard/alpine-glibc:3.7
+FROM jeanblanchard/alpine-glibc:3.9
 
 LABEL maintainer="Ryo Ota <nwtgck@gmail.com>"
 
