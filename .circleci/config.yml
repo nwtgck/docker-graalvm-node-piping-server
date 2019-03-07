@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  bundle:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      # (from: https://stackoverflow.com/a/4438292/2885946)
+      - run:
+          name: "Pull Submodules"
+          command: git submodule update --init --recursive
+      - run: npm install
+      # Check whether "run bundle" is successful
+      - run: npm run bundle
+
+  docker_test:
+    machine: true
+    steps:
+      - checkout
+      # (from: https://stackoverflow.com/a/4438292/2885946)
+      - run:
+          name: "Pull Submodules"
+          command: git submodule update --init --recursive
+      # Check whether "docker build" is successful or not
+      - run: docker build -t graalvm-node-piping-server .
+      - run:
+          name: Working test with Docker image
+          command: |
+            # Run a server
+            docker run -d -p 8080:80 graalvm-node-piping-server --http-port=80
+            # Wait for server running
+            sleep 1
+            # Send and wait for a reciever
+            curl --data-binary 'hello, world' localhost:8080/mypath &
+            # Get data
+            curl localhost:8080/mypath
+
+workflows:
+  version: 2
+  node_tests:
+    jobs:
+      - bundle
+      - docker_test
