@@ -1,6 +1,6 @@
 # NOTE: Multi-stage Build
 
-FROM alpine:3.7 as graalvm_download
+FROM alpine:3.9 as graalvm_download
 
 ENV GRAALVM_VERSION=1.0.0-rc13
 
