@@ -12,15 +12,16 @@ RUN curl -L https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSIO
 
 
 
-FROM node:10.15-alpine as piping_bundle
+FROM node:10.15-alpine as piping_build
 
-# Copy to /piping-server
-COPY . /piping-server
+# Copy piping server to /app
+COPY piping-server /app
 
-# Create bundled Piping Server
-RUN cd /piping-server && \
+# Build Piping Server
+RUN cd /app && \
     npm install && \
-    npm run bundle
+    npm run build && \
+    npm prune --production
 
 
 
@@ -38,6 +39,6 @@ COPY --from=graalvm_download /graalvm-ce/jre/lib/amd64/libjsig.so $GRAALVM_PATH/
 COPY --from=graalvm_download /graalvm-ce/jre/lib/polyglot/libpolyglot.so $GRAALVM_PATH/jre/lib/polyglot/libpolyglot.so
 
 # Copy bundled Piping Server
-COPY --from=piping_bundle /piping-server/dist/index.js /app/index.js
+COPY --from=piping_build /app /app
 
-ENTRYPOINT [ "node", "/app/index.js" ]
+ENTRYPOINT [ "node", "/app/dist/src/index.js" ]
