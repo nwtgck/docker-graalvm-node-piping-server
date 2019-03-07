@@ -12,7 +12,7 @@ RUN curl -L https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSIO
 
 
 
-FROM node:10.15-alpine as piping_bundle
+FROM node:11.10.1-alpine as piping_bundle
 
 # Copy to /piping-server
 COPY . /piping-server
