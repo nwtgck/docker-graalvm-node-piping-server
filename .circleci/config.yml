@@ -1,18 +1,5 @@
 version: 2
 jobs:
-  bundle:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - checkout
-      # (from: https://stackoverflow.com/a/4438292/2885946)
-      - run:
-          name: "Pull Submodules"
-          command: git submodule update --init --recursive
-      - run: npm install
-      # Check whether "run bundle" is successful
-      - run: npm run bundle
-
   docker_test:
     machine: true
     steps:
@@ -46,5 +33,4 @@ workflows:
   version: 2
   node_tests:
     jobs:
-      - bundle
       - docker_test
