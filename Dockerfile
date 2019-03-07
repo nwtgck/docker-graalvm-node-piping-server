@@ -38,7 +38,7 @@ COPY --from=graalvm_download /graalvm-ce/jre/languages/js/bin/node $GRAALVM_PATH
 COPY --from=graalvm_download /graalvm-ce/jre/lib/amd64/libjsig.so $GRAALVM_PATH/jre/lib/amd64/libjsig.so
 COPY --from=graalvm_download /graalvm-ce/jre/lib/polyglot/libpolyglot.so $GRAALVM_PATH/jre/lib/polyglot/libpolyglot.so
 
-# Copy bundled Piping Server
+# Copy Piping Server
 COPY --from=piping_build /app /app
 
 ENTRYPOINT [ "node", "/app/dist/src/index.js" ]
