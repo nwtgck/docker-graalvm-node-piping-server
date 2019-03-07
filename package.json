@@ -11,6 +11,6 @@
   "author": "Ryo Ota <nwtgck@gmail.com> (https://github.com/nwtgck)",
   "license": "MIT",
   "devDependencies": {
-    "parcel-bundler": "^1.11.0"
+    "parcel-bundler": "^1.12.0"
   }
 }
