@@ -6,7 +6,7 @@ Docker image for [Piping Server](https://github.com/nwtgck/piping-server) on [No
 ## Run on Docker
 
 ```bash
-docker run -it -p 8181:8080 nwtgck/graalvm-node-piping-server
+docker run -p 8181:8080 nwtgck/graalvm-node-piping-server
 ```
 
 Then, a Piping server is running on http://localhost:8181.
