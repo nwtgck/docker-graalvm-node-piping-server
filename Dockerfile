@@ -33,6 +33,9 @@ LABEL maintainer="Ryo Ota <nwtgck@gmail.com>"
 ENV GRAALVM_PATH=/usr/local/graalvm-ce
 ENV PATH=$PATH:$GRAALVM_PATH/jre/languages/js/bin
 
+# Install tini
+RUN apk add --no-cache tini
+
 # Copy only essential GraalVM files
 COPY --from=graalvm_download /graalvm-ce/jre/languages/js/bin/node $GRAALVM_PATH/jre/languages/js/bin/node
 COPY --from=graalvm_download /graalvm-ce/jre/lib/amd64/libjsig.so $GRAALVM_PATH/jre/lib/amd64/libjsig.so
@@ -41,4 +44,5 @@ COPY --from=graalvm_download /graalvm-ce/jre/lib/polyglot/libpolyglot.so $GRAALV
 # Copy Piping Server
 COPY --from=piping_build /app /app
 
-ENTRYPOINT [ "node", "/app/dist/src/index.js" ]
+# Run a server
+ENTRYPOINT [ "tini", "--", "node", "/app/dist/src/index.js" ]
