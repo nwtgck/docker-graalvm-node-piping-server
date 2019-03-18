@@ -2,7 +2,7 @@
 
 FROM alpine:3.9 as graalvm_download
 
-ENV GRAALVM_VERSION=1.0.0-rc13
+ENV GRAALVM_VERSION=1.0.0-rc14
 
 RUN apk add --no-cache curl
 
