@@ -2,12 +2,12 @@
 
 FROM alpine:3.9 as graalvm_download
 
-ENV GRAALVM_VERSION=1.0.0-rc16
+ENV GRAALVM_VERSION=19.0.0
 
 RUN apk add --no-cache curl
 
 # Download GraalVM and Install
-RUN curl -L https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSION/graalvm-ce-$GRAALVM_VERSION-linux-amd64.tar.gz | tar zxf - && \
+RUN curl -L https://github.com/oracle/graal/releases/download/vm-${GRAALVM_VERSION}/graalvm-ce-linux-amd64-${GRAALVM_VERSION}.tar.gz | tar zxf - && \
     mv /graalvm-ce-$GRAALVM_VERSION /graalvm-ce
 
 
