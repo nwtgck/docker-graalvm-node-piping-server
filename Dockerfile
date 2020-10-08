@@ -12,7 +12,7 @@ RUN curl -L https://github.com/oracle/graal/releases/download/vm-${GRAALVM_VERSI
 
 
 
-FROM node:10.15-alpine as piping_build
+FROM node:14.13.1-alpine as piping_build
 
 # Copy piping server to /app
 COPY piping-server /app
