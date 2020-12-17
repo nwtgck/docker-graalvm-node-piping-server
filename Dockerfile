@@ -26,7 +26,7 @@ RUN cd /app && \
 
 
 # (base image info from: https://masahito.hatenablog.com/entry/2018/06/24/223231)
-FROM jeanblanchard/alpine-glibc:3.9
+FROM jeanblanchard/alpine-glibc:3.12.3
 
 LABEL maintainer="Ryo Ota <nwtgck@gmail.com>"
 
